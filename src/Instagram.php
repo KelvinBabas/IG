@@ -80,9 +80,12 @@ class Instagram
         if ($response->getStatusCode() === 400) {
             $body = json_decode((string) $response->getBody());
 
+
             throw new InstagramException($body->meta->error_message);
         }
 
-        return json_decode((string) $response->getBody())->data;
+        $status = json_decode((string) $response->getBody());
+
+        return ([$status]);
     }
 }
